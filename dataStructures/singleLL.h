@@ -1,5 +1,6 @@
-#pragma once
+//#pragma once
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 template <class nodeT>
@@ -69,3 +70,6 @@ void linkedList<nodeT>::printSLL()
 		cout << current->data << " ";
 	cout << current->data << " ";
 }
+
+template <class nodeT>
+void 

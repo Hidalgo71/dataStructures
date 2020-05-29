@@ -7,6 +7,8 @@ int main()
 {
 	char item;
 
+	//cout << "working";
+
 	linkedList<char> listNSLL;
 
 	cout << "Create Number Single Linked List: "
