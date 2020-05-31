@@ -1,33 +1,32 @@
 //#pragma once
-#include <iostream>
 #include <cassert>
 using namespace std;
 
 template <class nodeT>
-struct nodeLL
+struct nodeSLL
 {
 	int data;												//Data inside the node
-	nodeLL* link;											//Address next node
+	nodeSLL* link;											//Address next node
 };
 
 template <class nodeT>
-class linkedList
+class singlyLinkedList
 {
 	int count;
 
-	nodeLL<nodeT> *head, *tail;								//Moving inside the Linked list
+	nodeSLL<nodeT> *head, *tail;								//Moving inside the Linked list
 	
 public:
-	linkedList();											//Constructor
+	singlyLinkedList();											//Constructor
 	void insertFirst(nodeT item);
 	void insertLast(nodeT item);
 	void insertPosition(nodeT item, int pos);
 	void printSLL();
-	~linkedList();
+	~singlyLinkedList();
 };
 
 template <class nodeT>
-linkedList<nodeT>::linkedList()
+singlyLinkedList<nodeT>::singlyLinkedList()
 {
 	head = NULL;											//Null, no point any node, no node yet.
 	tail = NULL;
@@ -35,9 +34,9 @@ linkedList<nodeT>::linkedList()
 }
 
 template <class nodeT>
-void linkedList<nodeT>::insertFirst(nodeT item)
+void singlyLinkedList<nodeT>::insertFirst(nodeT item)
 {
-	nodeLL<nodeT>* newNode = new nodeLL<nodeT>;				//Creating new node nodeLL type
+	nodeSLL<nodeT>* newNode = new nodeSLL<nodeT>;				//Creating new node nodeLL type
 	newNode->data = item;									//Nodes data, we don't know yet. This like add nodes data.
 	newNode->link = head;									//Head is a pointer, assaign nodes link to head node
 	head = newNode;
@@ -47,9 +46,9 @@ void linkedList<nodeT>::insertFirst(nodeT item)
 }
 
 template <class nodeT>
-void linkedList<nodeT>::insertLast(nodeT item)
+void singlyLinkedList<nodeT>::insertLast(nodeT item)
 {
-	nodeLL<nodeT>* newNode = new nodeLL<nodeT>;				//Creating new node nodeLL type
+	nodeSLL<nodeT>* newNode = new nodeSLL<nodeT>;				//Creating new node nodeLL type
 	newNode->data = item;									//Nodes data, we don't know yet. This like add nodes data.
 	newNode->link = NULL;									//Last node address no node
 	
@@ -63,16 +62,16 @@ void linkedList<nodeT>::insertLast(nodeT item)
 }
 
 template <class nodeT>
-void linkedList<nodeT>::printSLL()
+void singlyLinkedList<nodeT>::printSLL()
 {
-	nodeLL<nodeT>* current;									//Creating pointer for not losing head, Traverse
+	nodeSLL<nodeT>* current;									//Creating pointer for not losing head, Traverse
 	for (current = head; current != tail; current = current->link)
 		cout << current->data << " ";
 	cout << current->data << " ";
 }
 
 template <class nodeT>
-void linkedList<nodeT>::insertPosition(nodeT item, int pos)
+void singlyLinkedList<nodeT>::insertPosition(nodeT item, int pos)
 {
 	if (pos == 0)											//Checking head is null
 		insertFirst(item);									//Creating 1st node
@@ -80,9 +79,9 @@ void linkedList<nodeT>::insertPosition(nodeT item, int pos)
 		insertLast(item);									//Creating last node
 	else
 	{
-		nodeLL<nodeT>* newNode = new nodeLL<nodeT>;
+		nodeSLL<nodeT>* newNode = new nodeSLL<nodeT>;
 		newNode->data = item;
-		nodeLL<nodeT>* cur = head;							//For traversing in the LL, and not losing Head pointer
+		nodeSLL<nodeT>* cur = head;							//For traversing in the LL, and not losing Head pointer
 		for (int i = 0; i < pos - 1; i++, cur = cur->link)	//Finding node which is intended(istenilen) position 1 node before
 			newNode->link = cur->link;						//Connecting node with insertAt node!
 		cur->link = newNode;								//Connecting insertAt link to the next nodes link
@@ -91,9 +90,9 @@ void linkedList<nodeT>::insertPosition(nodeT item, int pos)
 }
 
 template<class nodeT>
-linkedList<nodeT>::~linkedList()
+singlyLinkedList<nodeT>::~singlyLinkedList()
 {
-	nodeLL<nodeT>* temp;
+	nodeSLL<nodeT>* temp;
 	while (head != NULL)									//To delete all nodes
 	{
 		temp = head;										//Head copied in temp

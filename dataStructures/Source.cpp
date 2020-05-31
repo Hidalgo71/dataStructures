@@ -10,8 +10,8 @@ int main()
 
 	//cout << "working";
 
-	linkedList<char> listCSLL;
-	linkedList<int> listNSLL;
+	singlyLinkedList<char> listCSLL;
+	singlyLinkedList<int> listNSLL;
 
 	cout << "Create Number Single Linked List: "
 		<< "\nCTRL+Z for exit!" << endl;
@@ -23,7 +23,7 @@ int main()
 		cin >> item;
 	}
 
-
+	listCSLL.insertPosition('y', 3);
 	listNSLL.printSLL();
 	//listTest.printSLL();
 	system("PAUSE");
