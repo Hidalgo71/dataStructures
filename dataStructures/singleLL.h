@@ -16,7 +16,7 @@ class linkedList
 	int count;
 
 	nodeLL<nodeT> *head, *tail;								//Moving inside the Linked list
-
+	
 public:
 	linkedList();											//Constructor
 	void insertFirst(nodeT item);
@@ -72,4 +72,34 @@ void linkedList<nodeT>::printSLL()
 }
 
 template <class nodeT>
-void 
+void linkedList<nodeT>::insertPosition(nodeT item, int pos)
+{
+	if (pos == 0)											//Checking head is null
+		insertFirst(item);									//Creating 1st node
+	else if (pos >= count - 1)								//Checking last node
+		insertLast(item);									//Creating last node
+	else
+	{
+		nodeLL<nodeT>* newNode = new nodeLL<nodeT>;
+		newNode->data = item;
+		nodeLL<nodeT>* cur = head;							//For traversing in the LL, and not losing Head pointer
+		for (int i = 0; i < pos - 1; i++, cur = cur->link)	//Finding node which is intended(istenilen) position 1 node before
+			newNode->link = cur->link;						//Connecting node with insertAt node!
+		cur->link = newNode;								//Connecting insertAt link to the next nodes link
+	}
+	count++;
+}
+
+template<class nodeT>
+linkedList<nodeT>::~linkedList()
+{
+	nodeLL<nodeT>* temp;
+	while (head != NULL)									//To delete all nodes
+	{
+		temp = head;										//Head copied in temp
+		head = head->link;									//Head linked next node	
+		delete temp;										//temp deleted
+	}
+	tail = NULL;
+	count = 0;
+}
