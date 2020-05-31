@@ -1,15 +1,17 @@
 #include <iostream>
 #include "singleLL.h"
+#include"doublyLL.h"
 
 using namespace std;
 
 int main()
 {
-	char item;
+	int item;
 
 	//cout << "working";
 
-	linkedList<char> listNSLL;
+	linkedList<char> listCSLL;
+	linkedList<int> listNSLL;
 
 	cout << "Create Number Single Linked List: "
 		<< "\nCTRL+Z for exit!" << endl;
@@ -18,10 +20,12 @@ int main()
 	while (!cin.eof())
 	{
 		listNSLL.insertFirst(item);
+		cin >> item;
 	}
 
 
 	listNSLL.printSLL();
+	//listTest.printSLL();
 	system("PAUSE");
 	return 0;
 }
