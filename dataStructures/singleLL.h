@@ -22,6 +22,7 @@ public:
 	void insertLast(nodeT item);
 	void insertPosition(nodeT item, int pos);
 	void printSLL();
+	void deleteNode(nodeT item);
 	~singlyLinkedList();
 };
 
@@ -64,10 +65,13 @@ void singlyLinkedList<nodeT>::insertLast(nodeT item)
 template <class nodeT>
 void singlyLinkedList<nodeT>::printSLL()
 {
-	nodeSLL<nodeT>* current;									//Creating pointer for not losing head, Traverse
-	for (current = head; current != tail; current = current->link)
-		cout << current->data << " ";
-	cout << current->data << " ";
+	nodeSLL<nodeT>* move;
+	move = head;
+	while (move != NULL)
+	{
+		cout << move->data << " ";
+		move = move->link;
+	}
 }
 
 template <class nodeT>
@@ -77,6 +81,7 @@ void singlyLinkedList<nodeT>::insertPosition(nodeT item, int pos)
 		insertFirst(item);									//Creating 1st node
 	else if (pos >= count - 1)								//Checking last node
 		insertLast(item);									//Creating last node
+	//else if(pos > count)
 	else
 	{
 		nodeSLL<nodeT>* newNode = new nodeSLL<nodeT>;
@@ -87,6 +92,39 @@ void singlyLinkedList<nodeT>::insertPosition(nodeT item, int pos)
 		cur->link = newNode;								//Connecting insertAt link to the next nodes link
 	}
 	count++;
+}
+
+template <class nodeT>
+void singlyLinkedList<nodeT>::deleteNode(nodeT item)
+{
+	nodeSLL<nodeT> *prev = head, *cur = prev->link, *temp;	//Create temporary travers links
+
+		assert(head != NULL);
+		while (cur != NULL)
+		{
+			if (head->data == item)							//if 1st node delete
+			{
+				head = prev->link;							//"*prev = head" make new node head's next
+				delete prev;								//deleting null pointer
+				prev = head;								//for other travers 
+				cur = prev->link;
+				count--;
+			}
+			else if (cur->data == item)						//The node is after head node
+			{
+				prev->link = cur->link;						//connect head pointer????????????
+				delete cur;
+				cur = prev->link;
+				count--;
+				if (cur == NULL)
+					tail = prev;
+			}
+			else
+			{
+				cur = cur->link;
+				prev = prev->link;
+			}
+		}
 }
 
 template<class nodeT>
