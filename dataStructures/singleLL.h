@@ -5,7 +5,7 @@ using namespace std;
 template <class nodeT>
 struct nodeSLL
 {
-	int data;												//Data inside the node
+	nodeT data;												//Data inside the node
 	nodeSLL* link;											//Address next node
 };
 

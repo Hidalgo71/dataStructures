@@ -22,7 +22,7 @@ public:
 	void insertLast(nodeT);
 	void insertAt(nodeT, int);
 	void printBackward();
-	void deleteItem(nodeT);
+	void deleteNode(nodeT);
 	~doublyLinkedList();
 };
 
@@ -53,7 +53,7 @@ void doublyLinkedList<nodeT>::insertLast(nodeT item)
 	nodeDLL<nodeT>* newNode = new nodeDLL<nodeT>;
 	newNode->data = item;
 	newNode->next = NULL;
-	newNode->prev = tail;										////[tail I item I null]
+	newNode->prev = tail;										//[tail I item I null]
 
 	if (head == NULL)
 	{
@@ -84,4 +84,38 @@ void doublyLinkedList<nodeT>::insertAt(nodeT item, int order)
 		newNode->prev = cur;									//new node connected to previous node(new nodes prev)
 	}
 	count++;
+}
+
+template <class nodeT>
+void doublyLinkedList<nodeT>::deleteNode(nodeT item)
+{
+	nodeDLL<nodeT> *cur = head;
+
+	assert(head != NULL);
+	while (cur != NULL)
+	{
+		if (cur->data == item)
+		{
+			if (cur == head)									//if 1st node
+			{
+				head = cur->next;								//next node is new head
+				head->prev = NULL;								//previous is a null
+			}
+			else if (cur == tail)								//last node
+			{
+				cur->prev->next = NULL;							//tails prev is a new last and nest is null
+				tail = cur->prev;	
+			}
+			else
+			{
+				cur->prev->next = cur->next;					//connecting deleted node prev node and del node next
+				cur->next->prev = cur->prev;					//connecting deleted node next and del node next
+			}
+			delete cur;
+			count--;
+			break;
+		}
+		cur = cur->next;
+	}
+	
 }

@@ -13,7 +13,7 @@ int main()
 	singlyLinkedList<char> listCSLL;
 	singlyLinkedList<int> listNSLL;
 
-	/*cout << "Create Number Single Linked List: "
+	cout << "Create Number Single Linked List: "
 		<< "\nCTRL+Z for exit!" << endl;
 	cin >> item;
 
@@ -23,24 +23,26 @@ int main()
 		cin >> item;
 	}
 	listNSLL.printSLL();
-	cout << endl;*/
-
-	cout << "Create Char Single Linked List: "
-		<< "\nCTRL+Z for exit!" << endl;
-	cin >> itemC;
-
-	while (!cin.eof())
-	{
-		listCSLL.insertLast(itemC);
-		cin >> itemC;
-	}
-	listCSLL.printSLL();
 	cout << endl;
-	/*listNSLL.insertPosition(71, 3);
-	listNSLL.printSLL();*/
-	cout << endl;
-	//listNSLL.deleteNode(6);
+
+	//cout << "Create Char Single Linked List: "
+	//	<< "\nCTRL+Z for exit!" << endl;
+	//cin >> itemC;
+
+	//while (!cin.eof())
+	//{
+	//	listCSLL.insertLast(itemC);
+	//	cin >> itemC;
+	//}
+	//listCSLL.printSLL();
+	//cout << endl;
+
+	
+	//listNSLL.insertPosition(71, 3);
 	//listNSLL.printSLL();
+	cout << endl;
+	listNSLL.deleteNode(6);
+	listNSLL.printSLL();
 	cout << endl;
 	//listTest.printSLL();
 	system("PAUSE");
