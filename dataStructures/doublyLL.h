@@ -116,6 +116,5 @@ void doublyLinkedList<nodeT>::deleteNode(nodeT item)
 			break;
 		}
 		cur = cur->next;
-	}
-	
+	}	
 }
